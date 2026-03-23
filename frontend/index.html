@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>STYL | Your AI Editorial Stylist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#ddd9d6",
+                        "on-tertiary-fixed-variant": "#514252",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#241726",
+                        "on-secondary-container": "#686175",
+                        "tertiary": "#6a596a",
+                        "surface-container": "#f1edea",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#bd5444",
+                        "on-secondary-fixed": "#1e1929",
+                        "background": "#fdf9f6",
+                        "on-background": "#1c1b1a",
+                        "surface-container-high": "#ebe7e4",
+                        "tertiary-fixed-dim": "#d6c0d4",
+                        "on-primary-fixed": "#400200",
+                        "on-tertiary-container": "#0b020d",
+                        "surface-tint": "#a03f30",
+                        "primary": "#9d3d2e",
+                        "inverse-on-surface": "#f4f0ed",
+                        "on-surface": "#1c1b1a",
+                        "on-primary-fixed-variant": "#80281b",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fdf9f6",
+                        "secondary": "#625b6e",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdad4",
+                        "inverse-primary": "#ffb4a7",
+                        "inverse-surface": "#31302f",
+                        "on-primary-container": "#fffbff",
+                        "secondary-fixed": "#e8def6",
+                        "outline-variant": "#ddc0bb",
+                        "surface-variant": "#e5e2df",
+                        "secondary-fixed-dim": "#ccc3d9",
+                        "surface-container-low": "#f7f3f0",
+                        "on-surface-variant": "#56423e",
+                        "surface-container-highest": "#e5e2df",
+                        "on-secondary-fixed-variant": "#4a4456",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fdf9f6",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#e8def6",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ffb4a7",
+                        "tertiary-container": "#847183",
+                        "outline": "#89726d",
+                        "tertiary-fixed": "#f3dcf1",
+                        "on-error": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fdf9f6;
+            color: #1c1b1a;
+            font-family: 'Manrope', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .serif-italic { font-family: 'Newsreader', serif; font-style: italic; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="bg-[#fdf9f6] dark:bg-[#1c1b1a] sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
+<div class="text-3xl font-serif tracking-tighter text-[#1c1b1a] dark:text-[#fdf9f6]">STYL</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="text-[#9d3d2e] dark:text-[#bd5444] font-bold border-b border-[#9d3d2e] pb-1 font-sans uppercase tracking-widest text-xs" href="/">Editorial</a>
+<a class="text-[#625b6e] dark:text-[#a199ad] hover:text-[#9d3d2e] transition-colors duration-300 font-sans uppercase tracking-widest text-xs" href="/occasion">Occasions</a>
+<a class="text-[#625b6e] dark:text-[#a199ad] hover:text-[#9d3d2e] transition-colors duration-300 font-sans uppercase tracking-widest text-xs" href="/complete-fit">My Wardrobe</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#9d3d2e] font-sans uppercase tracking-widest text-xs font-bold hover:opacity-70 transition-opacity">Sign In</button>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-6 py-2 rounded-full font-sans uppercase tracking-widest text-xs font-bold hover:scale-105 transition-transform duration-300">Get Started</button>
+</div>
+</div>
+</nav>
+<main class="relative overflow-hidden">
+<!-- Floating Elements Background -->
+<div class="absolute inset-0 pointer-events-none z-0">
+<div class="absolute top-[15%] left-[5%] opacity-20 rotate-12 transition-transform duration-1000 hover:scale-110">
+<img class="w-48 h-64 object-cover rounded-xl grayscale hover:grayscale-0 transition-all" data-alt="Floating luxury trench coat on warm background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ3ZSrLwx6Md1wZ-xPN1Lu43OD6ul2Y5qQ6PKRD9x95EZeBXRYhmDQ22X8XagSrE7gpj-3MZyi5i4lA5YYv46VrBwhH15toT5OMjmuU-C2hJLk0m5klZ12kk5HuSwoZItcbDs76Wjad5sKGRvnHApGih8FKi1BWt7G98fstdUUyy_6Asiontu1OeNs3Mnunxk2C8lmOc6RXhCfhz4CQrAVQsLKLZ_DWjl26u5W5bcd9Dsnmnn6MIdEqNUpbyVE_YuSVYIiPpQeHn0"/>
+</div>
+<div class="absolute top-[45%] right-[8%] opacity-15 -rotate-6 transition-transform duration-1000 hover:scale-110">
+<img class="w-40 h-56 object-cover rounded-xl grayscale hover:grayscale-0 transition-all" data-alt="Floating leather boot fashion detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3m6s_7_M7OHmfVw4PMbw6wPiUbZIKdF3InY59TUV8UgpiWHzEfAmvoEbfaprWYMFI4vWHItk3HYh0cTU_cJxEOfK51QYzwPb68-0oJrqtrlSW0S7lNX8ueGRaL6WnO-DlfkZTSWXCkuc7mJKWMAaZtNXbWUBlr0pLliOrfYnnNKeOC9pizT7dqvb1yWRm9nerCxbWayvDhb8nWtZxtndVjxoUxB05s5QSONjKVuNKMAp1A6ptCoZ6pWYUjLypJBYkETspz7V9tH8"/>
+</div>
+<div class="absolute bottom-[10%] left-[20%] opacity-25 rotate-3 transition-transform duration-1000 hover:scale-110">
+<img class="w-56 h-72 object-cover rounded-xl grayscale hover:grayscale-0 transition-all" data-alt="Floating minimal black t-shirt layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAllhBOrbRlcyIGU4t2FeULupPQwvNf4QbMAGqQSXPpcGpyfRe97gCQo3CRrVHacoXhU71LA0BaYnz6EQAxRw2o6tkOEEKVvmaZ8E45V3H_6ToXpvrgSr96KviupXKsyswKSmgoxucrLA4ERKht1lllWwmHIUutgyxLGi5pUh-P3-GXje6QgtdKcY1ax3km1uBmPuKKEClEKpQySxh0SpeRhEtWlR_o3rVlLLOKDF_9YDb6Wu6BsTIm2zCYCqagQmvrqT8dXtOGnxg"/>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="relative z-10 max-w-screen-2xl mx-auto px-8 pt-24 pb-32 text-center">
+<div class="inline-block mb-6">
+<span class="font-label text-xs uppercase tracking-[0.3em] text-secondary py-2 px-4 border border-outline-variant/30 rounded-full">AI-Powered Curation</span>
+</div>
+<div class="max-w-5xl mx-auto mb-12">
+<p class="font-label text-xs md:text-sm uppercase tracking-[0.45em] text-primary mb-6">STYL — Style Trend Your Look</p>
+<h1 class="font-headline text-5xl md:text-7xl lg:text-[6.4rem] leading-[0.9] tracking-tighter mb-8">
+                Dress the <span class="serif-italic text-primary">mood.</span><br/>
+                Own the <span class="text-secondary">moment.</span><br/>
+<span class="text-primary">Turn every fit editorial.</span>
+</h1>
+<div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+<span class="px-5 py-3 rounded-full bg-surface-container-lowest border border-outline-variant/40 font-label text-[10px] md:text-xs uppercase tracking-[0.22em] text-secondary shadow-sm">Sharp Styling Direction</span>
+<span class="px-5 py-3 rounded-full bg-primary text-on-primary font-label text-[10px] md:text-xs uppercase tracking-[0.22em] shadow-lg shadow-primary/20">Trend-Led Outfit Energy</span>
+<span class="px-5 py-3 rounded-full bg-surface-container-high border border-outline-variant/30 font-label text-[10px] md:text-xs uppercase tracking-[0.22em] text-secondary">Looks That Feel Like You</span>
+</div>
+</div>
+<p class="font-body text-lg md:text-xl text-secondary max-w-3xl mx-auto mb-16 leading-relaxed">
+                STYL turns your wardrobe ideas into standout looks with curated fashion direction, polished outfit flows, and product-led recommendations that feel expressive, current, and personal.
+            </p>
+<!-- CTA Cards -->
+<div class="flex flex-col md:flex-row gap-8 justify-center items-stretch max-w-4xl mx-auto">
+<a class="group relative flex-1 bg-surface-container-low p-10 rounded-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 cursor-pointer flex flex-col items-center focus:outline-none focus:ring-2 focus:ring-primary/40" href="/complete-fit">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">checkroom</span>
+</div>
+<h3 class="font-headline text-3xl mb-4">Complete My Fit</h3>
+<p class="font-body text-sm text-secondary mb-8 text-center">Upload a piece you love and let STYL curate the perfect supporting ensemble.</p>
+<div class="mt-auto flex items-center gap-2 text-primary font-bold font-sans text-xs uppercase tracking-widest">
+                        Start Curating <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</a>
+<a class="group relative flex-1 bg-surface-container-high p-10 rounded-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 cursor-pointer flex flex-col items-center focus:outline-none focus:ring-2 focus:ring-primary/40" href="/occasion">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center mb-6 text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">auto_awesome</span>
+</div>
+<h3 class="font-headline text-3xl mb-4">Style Me For An Occasion</h3>
+<p class="font-body text-sm text-secondary mb-8 text-center">From gala nights to boardroom power-plays, define your presence with AI precision.</p>
+<div class="mt-auto flex items-center gap-2 text-primary font-bold font-sans text-xs uppercase tracking-widest">
+                        Explore Occasions <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Bento Grid Feature Section -->
+<section class="max-w-screen-2xl mx-auto px-8 py-24">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto">
+<!-- Large Feature Card -->
+<div class="md:col-span-8 bg-surface-container rounded-xl overflow-hidden relative group min-h-[500px]">
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-1000" data-alt="High fashion model in studio light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJB80cl9zAWTyLh5hBsPOKxI6t-oK9PLbCl1dxAi8o8aEi0YhNZIQcOsAiyL674KbPiKB2iv5PnplR6-VzdV03LR30BBTPNfsfbMobY-r2on1a6qL5zgoLvKV-5C2n1d7nZGdrv42HN86LvCmFKHsFpnI1wuTOulCzIqr7oy7dwh6SGHbvtBokEniJqn-gQy749uhi1jW3jMcYQt6sGY6iLyQYeAIIRagPS07XiaK7nnleWAABZIfW3h259RavVWSfKB_6RV_45Hw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-12">
+<span class="font-label text-xs uppercase tracking-widest text-primary font-bold mb-4 block">Editorial Intelligence</span>
+<h2 class="font-headline text-5xl text-on-background mb-6 max-w-md leading-tight">Beyond the <span class="serif-italic">Algorithm.</span></h2>
+<p class="font-body text-on-background/80 max-w-sm">We don't just match colors; we understand texture, silhouette, and the cultural context of every stitch.</p>
+</div>
+</div>
+<!-- Vertical Cards Stack -->
+<div class="md:col-span-4 flex flex-col gap-8">
+<div class="flex-1 bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-center border border-outline-variant/10">
+<div class="text-primary mb-4">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<h4 class="font-headline text-2xl mb-2">Conscious Wardrobe</h4>
+<p class="font-body text-sm text-secondary">Shop sustainable alternatives curated specifically for your existing closet.</p>
+</div>
+<div class="flex-1 bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-center">
+<h4 class="font-headline text-2xl mb-4 italic">"The stylist I've always wanted, now in my pocket."</h4>
+<p class="font-label text-[10px] uppercase tracking-widest opacity-70">— Sarah J., Creative Director</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Editorial Sign-up -->
+<section class="max-w-screen-2xl mx-auto px-8 py-32 text-center bg-surface-container-low rounded-t-[5rem]">
+<h2 class="font-headline text-5xl mb-8">The <span class="serif-italic">Weekly</span> Edit</h2>
+<p class="font-body text-secondary mb-12 max-w-xl mx-auto">Receive a curated selection of global fashion trends, AI insights, and early access to new designer collaborations.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+<input class="w-full bg-surface-container-lowest border-none px-6 py-4 rounded-full font-label text-xs tracking-widest focus:ring-1 focus:ring-primary outline-none" placeholder="YOUR EMAIL ADDRESS" type="email"/>
+<button class="w-full sm:w-auto bg-primary text-on-primary px-8 py-4 rounded-full font-sans uppercase tracking-widest text-xs font-bold hover:bg-primary-container transition-colors shrink-0">Subscribe</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-[#1c1b1a]/5 bg-[#fdf9f6] dark:bg-[#1c1b1a]">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="font-serif italic text-2xl text-[#1c1b1a] dark:text-[#fdf9f6]">STYL</div>
+<p class="font-sans text-xs tracking-normal text-secondary opacity-70">© 2024 STYL AI. Powered by Gemini AI.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-sans text-xs tracking-normal text-secondary opacity-70 hover:opacity-100 transition-opacity" href="#">Privacy</a>
+<a class="font-sans text-xs tracking-normal text-secondary opacity-70 hover:opacity-100 transition-opacity" href="#">Terms</a>
+<a class="font-sans text-xs tracking-normal text-secondary opacity-70 hover:opacity-100 transition-opacity" href="#">Editorial Policy</a>
+</div>
+<div class="flex gap-6">
+<a class="text-primary hover:scale-110 transition-transform" href="#"><span class="material-symbols-outlined">brand_awareness</span></a>
+<a class="text-primary hover:scale-110 transition-transform" href="#"><span class="material-symbols-outlined">camera_indoor</span></a>
+<a class="text-primary hover:scale-110 transition-transform" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-[#fdf9f6]/80 dark:bg-[#1c1b1a]/80 backdrop-blur-xl shadow-[0_-8px_30px_rgb(157,61,46,0.04)] rounded-t-[2.5rem]">
+<a class="flex flex-col items-center justify-center bg-[#9d3d2e] text-[#fdf9f6] rounded-full px-6 py-2 scale-90" href="/">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-sans text-[10px] font-medium uppercase tracking-wider mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#625b6e] dark:text-[#a199ad] px-6 py-2 hover:scale-110 transition-transform duration-300" href="/occasion">
+<span class="material-symbols-outlined">styler</span>
+<span class="font-sans text-[10px] font-medium uppercase tracking-wider mt-1">Stylist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#625b6e] dark:text-[#a199ad] px-6 py-2 hover:scale-110 transition-transform duration-300" href="/complete-fit">
+<span class="material-symbols-outlined">checkroom</span>
+<span class="font-sans text-[10px] font-medium uppercase tracking-wider mt-1">Wardrobe</span>
+</a>
+<div class="flex flex-col items-center justify-center text-[#625b6e] dark:text-[#a199ad] px-6 py-2">
+<span class="material-symbols-outlined">person</span>
+<span class="font-sans text-[10px] font-medium uppercase tracking-wider mt-1">Profile</span>
+</div>
+</div>
+</body></html>

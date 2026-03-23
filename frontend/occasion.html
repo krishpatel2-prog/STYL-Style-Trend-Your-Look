@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>STYL | Occasion Stylist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: {
+    background: "#fdf9f6", "on-background": "#1c1b1a", primary: "#9d3d2e",
+    "primary-container": "#bd5444", secondary: "#625b6e", outline: "#89726d",
+    "outline-variant": "#ddc0bb", "surface-container": "#f1edea",
+    "surface-container-low": "#f7f3f0", "surface-container-high": "#ebe7e4",
+    "error-container": "#ffdad6", "on-error-container": "#93000a", "on-primary": "#ffffff"
+  },
+  fontFamily: { headline: ["Newsreader", "serif"], body: ["Manrope", "sans-serif"] }
+}}}
+</script>
+<style>
+body { font-family: "Manrope", sans-serif; }
+.material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }
+input[type="range"] { -webkit-appearance: none; background: transparent; }
+input[type="range"]::-webkit-slider-runnable-track { background: #e5e2df; height: 4px; border-radius: 9999px; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 9999px; background: #9d3d2e; margin-top: -8px; }
+</style>
+</head>
+<body class="bg-background text-on-background" data-page="occasion">
+<nav class="mx-auto flex w-full max-w-screen-2xl items-center justify-between px-8 py-6">
+<a class="text-3xl tracking-tighter" href="/" style="font-family: Newsreader, serif;">STYL</a>
+<div class="hidden gap-12 md:flex">
+<a class="text-xs uppercase tracking-widest text-secondary" href="/">Editorial</a>
+<a class="border-b border-primary pb-1 text-xs font-bold uppercase tracking-widest text-primary" href="/occasion">Occasions</a>
+<a class="text-xs uppercase tracking-widest text-secondary" href="/complete-fit">My Wardrobe</a>
+</div>
+</nav>
+<main class="mx-auto max-w-screen-xl px-6 py-12">
+<header class="mx-auto mb-16 max-w-3xl text-center">
+<h1 class="mb-6 font-headline text-5xl italic md:text-7xl">Define your <span class="text-primary">aesthetic</span></h1>
+<p class="text-lg text-secondary">Call the backend and render a live outfit plan with real product cards.</p>
+</header>
+<section class="grid grid-cols-1 gap-16 lg:grid-cols-12">
+<section class="space-y-10 rounded-2xl bg-surface-container-low p-8 lg:col-span-5">
+<div>
+<label class="mb-4 block text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Select Occasion</label>
+<div class="flex flex-wrap gap-3">
+<button class="occasion-pill rounded-full border border-outline-variant px-5 py-2 text-sm" data-value="Wedding Guest" type="button">Wedding Guest</button>
+<button class="occasion-pill rounded-full bg-primary px-5 py-2 text-sm text-on-primary shadow-lg shadow-primary/20" data-value="Summer Soiree" type="button">Summer Soiree</button>
+<button class="occasion-pill rounded-full border border-outline-variant px-5 py-2 text-sm" data-value="Business Meeting" type="button">Business Meeting</button>
+<button class="occasion-pill rounded-full border border-outline-variant px-5 py-2 text-sm" data-value="First Date" type="button">First Date</button>
+<button class="occasion-pill rounded-full border border-outline-variant px-5 py-2 text-sm" data-value="Art Gallery Opening" type="button">Art Gallery Opening</button>
+</div>
+</div>
+<div>
+<label class="mb-4 block text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Style Direction</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="style-pill rounded-2xl border border-outline-variant p-4 text-left text-sm" data-value="Classic" type="button"><span class="block font-bold">Classic</span><span class="text-xs text-secondary">Timeless elegance</span></button>
+<button class="style-pill rounded-2xl border border-primary bg-white p-4 text-left text-sm shadow-xl shadow-primary/5" data-value="Minimalist" type="button"><span class="block font-bold text-primary">Minimalist</span><span class="text-xs text-secondary">Clean lines and neutral</span></button>
+<button class="style-pill rounded-2xl border border-outline-variant p-4 text-left text-sm" data-value="Streetwear" type="button"><span class="block font-bold">Streetwear</span><span class="text-xs text-secondary">Urban and bold</span></button>
+<button class="style-pill rounded-2xl border border-outline-variant p-4 text-left text-sm" data-value="Smart Casual" type="button"><span class="block font-bold">Smart Casual</span><span class="text-xs text-secondary">Relaxed yet polished</span></button>
+</div>
+</div>
+<div>
+<label class="mb-3 block text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Gender Perspective</label>
+<div class="inline-flex rounded-full bg-surface-container p-1">
+<button class="gender-pill rounded-full px-6 py-2 text-xs font-bold" data-value="masculine" type="button">MASCULINE</button>
+<button class="gender-pill rounded-full bg-white px-6 py-2 text-xs font-bold shadow-sm" data-value="feminine" type="button">FEMININE</button>
+<button class="gender-pill rounded-full px-6 py-2 text-xs font-bold" data-value="neutral" type="button">NEUTRAL</button>
+</div>
+</div>
+<div>
+<div class="mb-4 flex items-center justify-between">
+<label class="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Outfit Budget</label>
+<span class="font-headline text-2xl italic text-primary" id="budget-value">INR 25,000</span>
+</div>
+<input class="w-full" id="budget-slider" max="100000" min="5000" step="5000" type="range" value="25000"/>
+</div>
+<p class="hidden rounded-2xl bg-error-container px-4 py-3 text-sm text-on-error-container" id="occasion-error"></p>
+<button class="w-full rounded-full bg-gradient-to-r from-primary to-primary-container px-6 py-5 text-xs font-bold uppercase tracking-[0.25em] text-on-primary disabled:opacity-60" id="occasion-submit" type="button">Build My Outfit</button>
+</section>
+<section class="space-y-8 lg:col-span-7">
+<div class="flex items-baseline justify-between gap-4">
+<h2 class="font-headline text-4xl italic">Your Curator's Selection</h2>
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary" id="occasion-meta">Ready to curate</span>
+</div>
+<div class="space-y-8" id="occasion-results">
+<div class="rounded-2xl bg-surface-container p-8 text-center text-secondary">Select filters and click <span class="font-bold text-primary">Build My Outfit</span>.</div>
+</div>
+</section>
+</section>
+</main>
+<script src="/static/brain.js" defer></script>
+</body>
+</html>
