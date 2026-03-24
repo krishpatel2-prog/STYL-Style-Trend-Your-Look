@@ -2,9 +2,11 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+from pathlib import Path
 
 
 app = FastAPI()
+BASE_DIR = Path(__file__).resolve().parent
 
 app.add_middleware(
     CORSMiddleware,
@@ -13,16 +15,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/static", StaticFiles(directory="assets"), name="static")
+app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
 
 @app.get("/")
 async def landing():
-    return FileResponse("index.html")
+    return FileResponse(BASE_DIR / "index.html")
 
 @app.get("/complete-fit")
 async def complete_fit():
-    return FileResponse("complete-fit.html")
+    return FileResponse(BASE_DIR / "complete-fit.html")
 
 @app.get("/occasion")
 async def occasion():
-    return FileResponse("occasion.html")
+    return FileResponse(BASE_DIR / "occasion.html")
