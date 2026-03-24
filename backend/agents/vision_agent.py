@@ -1,4 +1,4 @@
-from google import genai
+import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 import json
@@ -6,7 +6,7 @@ import re
 
 load_dotenv()
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def extract_json(text: str):
     match = re.search(r"\{.*\}", text, re.DOTALL)
@@ -73,10 +73,9 @@ Return ONLY valid JSON:
             }
         })
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=contents
-    )
+    model = genai.GenerativeModel("gemini-1.5-flash")
+
+    response = model.generate_content(prompt)
 
     raw = response.text
 

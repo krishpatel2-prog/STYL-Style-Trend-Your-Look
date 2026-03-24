@@ -1,4 +1,4 @@
-from google import genai
+import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 import json
@@ -7,7 +7,7 @@ from agents.vision_agent import extract_json
 
 load_dotenv()
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def recommend_outfit(vision_data: dict):
     has_shirt = vision_data.get("shirt") is not None
@@ -55,10 +55,9 @@ Return ONLY valid JSON:
 }}
 """
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=[prompt]
-    )
+    model = genai.GenerativeModel("gemini-1.5-flash")
+
+    response = model.generate_content(prompt)
 
     raw = response.text
 
