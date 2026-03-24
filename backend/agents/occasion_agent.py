@@ -1,4 +1,4 @@
-from google import genai
+import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 import json
@@ -7,7 +7,7 @@ from agents.vision_agent import extract_json
 
 load_dotenv()
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def plan_occasion_outfit(occasion: str, style: str, gender: str, budget_min: int, budget_max: int):
     prompt = f"""
@@ -61,10 +61,9 @@ def plan_occasion_outfit(occasion: str, style: str, gender: str, budget_min: int
     }}
     """
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=[prompt]
-    )
+    model = genai.GenerativeModel("gemini-1.5-flash")
+
+    response = model.generate_content(prompt)
 
     raw = response.text
 
