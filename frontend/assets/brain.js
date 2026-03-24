@@ -2,7 +2,7 @@
   const page = document.body?.dataset.page;
   if (!page) return;
 
-  const API_BASE = window.STYL_API_BASE || "http://127.0.0.1:8000";
+  const API_URL = "https://styl-style-trend-your-look-backend.onrender.com";
 
   const escapeHtml = (value) => String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -26,6 +26,15 @@
     if (!button) return;
     button.disabled = loading;
     button.textContent = loading ? loadingText : idleText;
+  };
+
+  const getErrorMessage = async (response) => {
+    try {
+      const data = await response.json();
+      return data?.detail || data?.message || `Request failed with status ${response.status}`;
+    } catch (_) {
+      return `Request failed with status ${response.status}`;
+    }
   };
 
   const setSelected = (buttons, active, activeClasses, inactiveClasses) => {
@@ -177,8 +186,15 @@
       form.append("budget_max", String(Number(slider.value)));
 
       try {
-        const response = await fetch(`${API_BASE}/occasion`, { method: "POST", body: form });
-        if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
+        const response = await fetch(`${API_URL}/occasion`, {
+          method: "POST",
+          body: form
+        });
+        if (!response.ok) {
+          const message = await getErrorMessage(response);
+          console.error("Occasion request failed:", response.status, message);
+          throw new Error(message);
+        }
         const data = await response.json();
         if (Array.isArray(data.warnings) && data.warnings.length) {
           setError(error, data.warnings[0]);
@@ -186,6 +202,7 @@
         meta.textContent = `${data.occasion} • ${data.style} • ${data.budget}`;
         results.innerHTML = renderOccasionOutfit(Array.isArray(data.outfit) ? data.outfit : []);
       } catch (err) {
+        console.error("Occasion fetch error:", err);
         meta.textContent = "Request failed";
         results.innerHTML = `<div class="rounded-2xl bg-error-container p-8 text-center text-on-error-container">Unable to build outfit recommendations right now.</div>`;
         setError(error, err.message || "Request failed.");
@@ -267,8 +284,15 @@
       if (pantsInput.files?.[0]) form.append("pants", pantsInput.files[0]);
 
       try {
-        const response = await fetch(`${API_BASE}/analyze`, { method: "POST", body: form });
-        if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
+        const response = await fetch(`${API_URL}/analyze`, {
+          method: "POST",
+          body: form
+        });
+        if (!response.ok) {
+          const message = await getErrorMessage(response);
+          console.error("Analyze request failed:", response.status, message);
+          throw new Error(message);
+        }
         const data = await response.json();
         const vision = data.vision || {};
         const recommendationGroups = data.recommendations?.recommendations || {};
@@ -282,6 +306,7 @@
         results.innerHTML = renderAnalyzeGroups(recommendationGroups);
         meta.textContent = `${Object.keys(recommendationGroups).length} recommendation groups`;
       } catch (err) {
+        console.error("Analyze fetch error:", err);
         meta.textContent = "Request failed";
         analysisVibe.textContent = "Unavailable";
         analysisDetails.innerHTML = `<p class="text-on-error-container">The backend request failed before analysis could complete.</p>`;
