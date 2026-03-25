@@ -31,7 +31,8 @@ async def root():
 async def analyze_fit(
     shirt: UploadFile = File(None),
     pants: UploadFile = File(None),
-    occasion: str = Form(...)
+    occasion: str = Form(...),
+    gender: str = Form("neutral")
 ):
     shirt_base64 = await convert_to_base64(shirt) if shirt else None
     pants_base64 = await convert_to_base64(pants) if pants else None
@@ -41,18 +42,19 @@ async def analyze_fit(
         "pants": None,
         "overall_vibe": "unknown",
         "occasion": occasion,
+        "gender": gender,
     }
     enriched = {"recommendations": {}}
     warnings: list[str] = []
 
     try:
-        vision_result = analyze_outfit(shirt_base64, pants_base64, occasion)
+        vision_result = analyze_outfit(shirt_base64, pants_base64, occasion, gender)
     except Exception as exc:
         print("analyze_outfit failed:", exc)
         warnings.append(f"Vision analysis unavailable: {exc}")
 
     try:
-        recommendations = recommend_outfit(vision_result)
+        recommendations = recommend_outfit(vision_result, gender)
         enriched = enrich_recommendations(recommendations)
     except Exception as exc:
         print("recommendation pipeline failed:", exc)

@@ -14,7 +14,7 @@ def extract_json(text: str):
         raise ValueError("No JSON found in response")
     return json.loads(match.group(0))
 
-def analyze_outfit(shirt_base64, pants_base64, occasion):
+def analyze_outfit(shirt_base64, pants_base64, occasion, gender="neutral"):
     # build image context for prompt
     provided_items = []
     if shirt_base64:
@@ -43,6 +43,7 @@ For EACH item provided extract:
 Then determine:
 - overall vibe
 - suitability for occasion: {occasion}
+- align suggestions for gender perspective: {gender}
 
 Return ONLY valid JSON:
 
@@ -50,7 +51,8 @@ Return ONLY valid JSON:
   "shirt": {{"color": "", "style": "", "fit": ""}} or null if not provided,
   "pants": {{"color": "", "style": "", "fit": ""}} or null if not provided,
   "overall_vibe": "",
-  "occasion": "{occasion}"
+  "occasion": "{occasion}",
+  "gender": "{gender}"
 }}
 """
 
@@ -75,7 +77,7 @@ Return ONLY valid JSON:
 
     model = genai.GenerativeModel("gemini-2.5-flash")
 
-    response = model.generate_content(prompt)
+    response = model.generate_content(contents)
 
     raw = response.text
 
@@ -87,5 +89,6 @@ Return ONLY valid JSON:
             "shirt": None,
             "pants": None,
             "overall_vibe": "unknown",
-            "occasion": occasion
+            "occasion": occasion,
+            "gender": gender
         }

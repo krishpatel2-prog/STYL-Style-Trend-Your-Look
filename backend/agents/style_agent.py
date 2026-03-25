@@ -9,7 +9,7 @@ load_dotenv()
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-def recommend_outfit(vision_data: dict):
+def recommend_outfit(vision_data: dict, gender: str = "neutral"):
     has_shirt = vision_data.get("shirt") is not None
     has_pants = vision_data.get("pants") is not None
 
@@ -30,6 +30,7 @@ Shirt: {json.dumps(vision_data.get('shirt'))}
 Pants: {json.dumps(vision_data.get('pants'))}
 Overall vibe: {vision_data.get('overall_vibe')}
 Occasion: {vision_data.get('occasion')}
+Gender perspective: {gender}
 
 Task: {task}
 
@@ -37,6 +38,7 @@ STRICT:
 - Always return at least 3 suggestions per category
 - Do NOT return empty arrays
 - For each item include: item name, reason it works, search_query for shopping
+- Keep the recommendations appropriate for the user's gender perspective
 
 Return ONLY valid JSON:
 

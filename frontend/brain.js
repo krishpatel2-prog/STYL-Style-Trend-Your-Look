@@ -243,6 +243,7 @@
 
   const initCompleteFitPage = () => {
     const occasionButtons = [...document.querySelectorAll(".analyze-occasion-pill")];
+    const genderButtons = [...document.querySelectorAll(".analyze-gender-pill")];
     const submit = document.getElementById("analyze-submit");
     const error = document.getElementById("analyze-error");
     const meta = document.getElementById("analyze-meta");
@@ -263,9 +264,14 @@
     initDropzone(pantsInput, pantsPreview, pantsPlaceholder, pantsZone);
 
     let occasion = occasionButtons.find((button) => button.classList.contains("bg-primary"))?.dataset.value || "Date";
+    let gender = genderButtons.find((button) => button.classList.contains("bg-white"))?.dataset.value || "feminine";
     occasionButtons.forEach((button) => button.addEventListener("click", () => {
       occasion = button.dataset.value;
       setSelected(occasionButtons, button, ["bg-primary", "text-on-primary", "shadow-lg", "shadow-primary/20"], ["bg-surface-container-high", "text-secondary"]);
+    }));
+    genderButtons.forEach((button) => button.addEventListener("click", () => {
+      gender = button.dataset.value;
+      setSelected(genderButtons, button, ["bg-white", "shadow-sm"], []);
     }));
 
     submit.addEventListener("click", async () => {
@@ -283,6 +289,7 @@
 
       const form = new FormData();
       form.append("occasion", occasion);
+      form.append("gender", gender);
       if (shirtInput.files?.[0]) form.append("shirt", shirtInput.files[0]);
       if (pantsInput.files?.[0]) form.append("pants", pantsInput.files[0]);
 
