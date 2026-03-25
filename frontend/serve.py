@@ -17,6 +17,16 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
 
+
+@app.get("/static/brain.js")
+async def brain_js():
+    return FileResponse(BASE_DIR / "brain.js", media_type="application/javascript")
+
+
+@app.get("/static/style.css")
+async def style_css():
+    return FileResponse(BASE_DIR / "style.css", media_type="text/css")
+
 @app.get("/")
 async def landing():
     return FileResponse(BASE_DIR / "index.html")
