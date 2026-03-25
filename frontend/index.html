@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>STYL | Your AI Editorial Stylist</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="/static/style.css" rel="stylesheet"/>
+<link href="./style.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -98,9 +98,9 @@
 <div class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
 <div class="text-3xl font-serif tracking-tighter text-[#1c1b1a] dark:text-[#fdf9f6]">STYL</div>
 <div class="hidden md:flex items-center space-x-12">
-<a class="text-[#9d3d2e] dark:text-[#bd5444] font-bold border-b border-[#9d3d2e] pb-1 font-sans uppercase tracking-widest text-xs" href="/">Editorial</a>
-<a class="text-[#625b6e] dark:text-[#a199ad] hover:text-[#9d3d2e] transition-colors duration-300 font-sans uppercase tracking-widest text-xs" href="/occasion">Occasions</a>
-<a class="text-[#625b6e] dark:text-[#a199ad] hover:text-[#9d3d2e] transition-colors duration-300 font-sans uppercase tracking-widest text-xs" href="/complete-fit">My Wardrobe</a>
+<a class="text-[#9d3d2e] dark:text-[#bd5444] font-bold border-b border-[#9d3d2e] pb-1 font-sans uppercase tracking-widest text-xs" href="./index.html">Editorial</a>
+<a class="text-[#625b6e] dark:text-[#a199ad] hover:text-[#9d3d2e] transition-colors duration-300 font-sans uppercase tracking-widest text-xs" href="./occasion.html">Occasions</a>
+<a class="text-[#625b6e] dark:text-[#a199ad] hover:text-[#9d3d2e] transition-colors duration-300 font-sans uppercase tracking-widest text-xs" href="./complete-fit.html">My Wardrobe</a>
 </div>
 <div class="flex items-center gap-6">
 <button class="text-[#9d3d2e] font-sans uppercase tracking-widest text-xs font-bold hover:opacity-70 transition-opacity">Sign In</button>
@@ -144,7 +144,7 @@
             </p>
 <!-- CTA Cards -->
 <div class="flex flex-col md:flex-row gap-8 justify-center items-stretch max-w-4xl mx-auto">
-<a class="group relative flex-1 bg-surface-container-low p-10 rounded-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 cursor-pointer flex flex-col items-center focus:outline-none focus:ring-2 focus:ring-primary/40" href="/complete-fit">
+<a class="group relative flex-1 bg-surface-container-low p-10 rounded-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 cursor-pointer flex flex-col items-center focus:outline-none focus:ring-2 focus:ring-primary/40" href="./complete-fit.html">
 <div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
 <span class="material-symbols-outlined text-3xl">checkroom</span>
 </div>
@@ -154,7 +154,7 @@
                         Start Curating <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </div>
 </a>
-<a class="group relative flex-1 bg-surface-container-high p-10 rounded-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 cursor-pointer flex flex-col items-center focus:outline-none focus:ring-2 focus:ring-primary/40" href="/occasion">
+<a class="group relative flex-1 bg-surface-container-high p-10 rounded-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 cursor-pointer flex flex-col items-center focus:outline-none focus:ring-2 focus:ring-primary/40" href="./occasion.html">
 <div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center mb-6 text-secondary group-hover:scale-110 transition-transform">
 <span class="material-symbols-outlined text-3xl">auto_awesome</span>
 </div>
@@ -224,15 +224,15 @@
 </footer>
 <!-- BottomNavBar (Mobile Only) -->
 <div class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-[#fdf9f6]/80 dark:bg-[#1c1b1a]/80 backdrop-blur-xl shadow-[0_-8px_30px_rgb(157,61,46,0.04)] rounded-t-[2.5rem]">
-<a class="flex flex-col items-center justify-center bg-[#9d3d2e] text-[#fdf9f6] rounded-full px-6 py-2 scale-90" href="/">
+<a class="flex flex-col items-center justify-center bg-[#9d3d2e] text-[#fdf9f6] rounded-full px-6 py-2 scale-90" href="./index.html">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
 <span class="font-sans text-[10px] font-medium uppercase tracking-wider mt-1">Explore</span>
 </a>
-<a class="flex flex-col items-center justify-center text-[#625b6e] dark:text-[#a199ad] px-6 py-2 hover:scale-110 transition-transform duration-300" href="/occasion">
+<a class="flex flex-col items-center justify-center text-[#625b6e] dark:text-[#a199ad] px-6 py-2 hover:scale-110 transition-transform duration-300" href="./occasion.html">
 <span class="material-symbols-outlined">styler</span>
 <span class="font-sans text-[10px] font-medium uppercase tracking-wider mt-1">Stylist</span>
 </a>
-<a class="flex flex-col items-center justify-center text-[#625b6e] dark:text-[#a199ad] px-6 py-2 hover:scale-110 transition-transform duration-300" href="/complete-fit">
+<a class="flex flex-col items-center justify-center text-[#625b6e] dark:text-[#a199ad] px-6 py-2 hover:scale-110 transition-transform duration-300" href="./complete-fit.html">
 <span class="material-symbols-outlined">checkroom</span>
 <span class="font-sans text-[10px] font-medium uppercase tracking-wider mt-1">Wardrobe</span>
 </a>
