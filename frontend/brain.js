@@ -1,8 +1,11 @@
 (() => {
-  const page = document.body?.dataset.page;
-  if (!page) return;
+  const API_URL = ["127.0.0.1", "localhost"].includes(window.location.hostname)
+    ? "http://127.0.0.1:8000"
+    : "https://styl-style-trend-your-look-backend.onrender.com";
+  const hasOccasionPage = !!document.getElementById("occasion-submit");
+  const hasCompleteFitPage = !!document.getElementById("analyze-submit");
 
-  const API_URL = "https://styl-style-trend-your-look-backend.onrender.com";
+  if (!hasOccasionPage && !hasCompleteFitPage) return;
 
   const escapeHtml = (value) => String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -318,6 +321,6 @@
     });
   };
 
-  if (page === "occasion") initOccasionPage();
-  if (page === "complete-fit") initCompleteFitPage();
+  if (hasOccasionPage) initOccasionPage();
+  if (hasCompleteFitPage) initCompleteFitPage();
 })();
