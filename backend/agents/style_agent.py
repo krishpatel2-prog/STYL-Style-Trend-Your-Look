@@ -23,36 +23,56 @@ def recommend_outfit(vision_data: dict, gender: str = "neutral"):
         return {"recommendations": {}}
 
     prompt = f"""
-You are a fashion stylist AI.
+You are an expert fashion stylist with deep knowledge of color theory and occasion-appropriate dressing.
 
 User outfit:
 Shirt: {json.dumps(vision_data.get('shirt'))}
 Pants: {json.dumps(vision_data.get('pants'))}
 Overall vibe: {vision_data.get('overall_vibe')}
 Occasion: {vision_data.get('occasion')}
-Gender perspective: {gender}
 
 Task: {task}
 
+STRICT FASHION RULES YOU MUST FOLLOW:
+
+COLOR HARMONY RULES:
+- Black goes with: white, grey, beige, camel, burgundy, navy (NOT black on black unless streetwear)
+- Navy goes with: white, light grey, beige, light pink (NOT black, NOT brown)
+- White goes with: everything — navy, black, beige, pastels
+- Beige/Camel goes with: white, brown, olive, burgundy (NOT navy or black)
+- Grey goes with: white, black, navy, burgundy
+- Brown goes with: beige, white, olive, mustard (NOT black, NOT navy)
+- When in doubt — neutral shoes (white, beige, tan, black) are always safe
+
+OCCASION-APPROPRIATE FOOTWEAR RULES:
+- Date (casual): white sneakers, loafers, chelsea boots, mules
+- Date (formal): heels, pointed flats, leather oxfords
+- College: sneakers, canvas shoes, chunky soles
+- Party: heels, block heels, dressy sandals, boots (female) / clean sneakers, loafers (male)
+- Office: formal shoes, loafers, block heels, pointed flats — NO sneakers
+- Wedding (female): heels, wedges, ethnic juttis, embellished sandals — NEVER sneakers or sports shoes
+- Wedding (male): formal leather shoes, juttis, loafers — NEVER sneakers
+- Casual: sneakers, sandals, slides, anything comfortable
+
+GENDER-SPECIFIC RULES:
+- Female + wedding/party: always suggest heels or dressy footwear
+- Male + office/formal: always suggest leather shoes, never sneakers
+- Female + casual/college: sneakers, flats, mules are fine
+
+Always suggest items that COMPLEMENT the existing colors — never clash.
+Explain WHY each item works with the specific colors and occasion.
+
 STRICT:
 - Always return at least 3 suggestions per category
-- Do NOT return empty arrays
-- For each item include: item name, reason it works, search_query for shopping
-- Keep the recommendations appropriate for the user's gender perspective
+- Each suggestion must reference the actual colors in the outfit
+- search_query must be specific and India-focused
 
 Return ONLY valid JSON:
-
 {{
   "recommendations": {{
-    "shirts": [
-      {{"item": "", "reason": "", "search_query": ""}}
-    ],
-    "pants": [
-      {{"item": "", "reason": "", "search_query": ""}}
-    ],
-    "shoes": [
-      {{"item": "", "reason": "", "search_query": ""}}
-    ]
+    "shirts": [{{"item": "", "reason": "", "search_query": ""}}],
+    "pants": [{{"item": "", "reason": "", "search_query": ""}}],
+    "shoes": [{{"item": "", "reason": "", "search_query": ""}}]
   }}
 }}
 """
