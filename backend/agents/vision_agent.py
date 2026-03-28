@@ -24,37 +24,41 @@ def analyze_outfit(shirt_base64, pants_base64, occasion, gender="neutral"):
     image_context = "\n".join(provided_items)
 
     prompt = f"""
-You are a fashion analysis AI.
+    You are a brutally honest but friendly AI fashion stylist — like a knowledgeable best friend who tells you the truth.
 
-STRICT INSTRUCTIONS:
-- ONLY describe what you SEE in the images
-- DO NOT guess colors
-- DO NOT assume common outfits
-- Be visually accurate
-- If unsure, say "unknown"
+    {image_context}
+    Occasion: {occasion}
+    Gender: {gender}
 
-{image_context}
+    Analyze the uploaded clothing items visually.
 
-For EACH item provided extract:
-- exact color (as seen)
-- clothing type
-- fit
+    Then give:
+    1. Raw visual data (color, style, fit) for each item
+    2. An honest stylist verdict — does this actually work for {occasion}? Be real, add personality. Use fashion terms. If it doesn't work for the occasion say so directly but constructively.
+    3. A vibe label with emoji (e.g. "Sleek & Mysterious 🖤", "Wedding Ready ✨", "Too Casual for This 😬")
+    4. Occasion match score out of 10
 
-Then determine:
-- overall vibe
-- suitability for occasion: {occasion}
-- align suggestions for gender perspective: {gender}
+    OCCASION INTELLIGENCE:
+    - Wedding (masculine): Think sherwani, kurta pajama, bandhgala suit, indo-western — NOT plain formal shirts
+    - Wedding (feminine): Think lehenga, saree, anarkali, ethnic coord, indo-western gown — NOT western casual
+    - Office: Formal and structured — dress shirts, trousers, blazers
+    - Party: Stylish and bold — statement pieces, trendy cuts
+    - Date: Smart casual — clean, put-together but not overdressed
+    - College: Casual and comfortable — jeans, tees, sneakers
+    - Casual: Relaxed — anything comfortable
 
-Return ONLY valid JSON:
-
-{{
-  "shirt": {{"color": "", "style": "", "fit": ""}} or null if not provided,
-  "pants": {{"color": "", "style": "", "fit": ""}} or null if not provided,
-  "overall_vibe": "",
-  "occasion": "{occasion}",
-  "gender": "{gender}"
-}}
-"""
+    Return ONLY valid JSON:
+    {{
+      "shirt": {{"color": "", "style": "", "fit": ""}} or null,
+      "pants": {{"color": "", "style": "", "fit": ""}} or null,
+      "overall_vibe": "",
+      "vibe_emoji": "",
+      "occasion_match_score": 0,
+      "stylist_verdict": "",
+      "occasion": "{occasion}",
+      "gender": "{gender}"
+    }}
+    """
 
     # build contents dynamically
     contents = [prompt]
@@ -82,13 +86,23 @@ Return ONLY valid JSON:
     raw = response.text
 
     try:
-        return extract_json(raw)
+        parsed = extract_json(raw)
+        parsed.setdefault("vibe_emoji", "✨")
+        parsed.setdefault("occasion_match_score", 0)
+        parsed.setdefault("stylist_verdict", "This outfit needs a clearer stylist verdict.")
+        parsed.setdefault("overall_vibe", "Unknown vibe")
+        parsed.setdefault("occasion", occasion)
+        parsed.setdefault("gender", gender)
+        return parsed
     except Exception as e:
         print("JSON ERROR:", e)
         return {
             "shirt": None,
             "pants": None,
-            "overall_vibe": "unknown",
+            "overall_vibe": "Unknown vibe",
+            "vibe_emoji": "✨",
+            "occasion_match_score": 0,
+            "stylist_verdict": f"I could not confidently read this look for {occasion}, so treat the recommendations as a safer reset.",
             "occasion": occasion,
             "gender": gender
         }

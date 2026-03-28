@@ -30,6 +30,7 @@ Shirt: {json.dumps(vision_data.get('shirt'))}
 Pants: {json.dumps(vision_data.get('pants'))}
 Overall vibe: {vision_data.get('overall_vibe')}
 Occasion: {vision_data.get('occasion')}
+Gender perspective: {gender}
 
 Task: {task}
 
@@ -58,6 +59,43 @@ GENDER-SPECIFIC RULES:
 - Female + wedding/party: always suggest heels or dressy footwear
 - Male + office/formal: always suggest leather shoes, never sneakers
 - Female + casual/college: sneakers, flats, mules are fine
+
+OCCASION + GENDER CLOTHING RULES:
+
+Wedding (masculine/male):
+- TOP: Sherwani, Kurta with jacket, Bandhgala suit, Indo-western kurta — NEVER plain western shirts
+- BOTTOM: Churidar, Pajama, Dhoti pants, Well-fitted trousers for indo-western
+- SHOES: Juttis, Mojaris, Formal leather shoes, Kolhapuris — NEVER sneakers
+- search_query must include "wedding" and "ethnic" or "indo-western"
+
+Wedding (feminine/female):
+- OUTFIT: Lehenga, Saree, Anarkali suit, Sharara, Ethnic coord, Indo-western gown
+- SHOES: Heels, Wedges, Embellished sandals, Ethnic juttis — NEVER sneakers or sports shoes
+- search_query must include "wedding" and "ethnic" or "bridal"
+
+Office (any gender):
+- Clean, structured, professional pieces only
+- NEVER suggest graphic tees, ripped jeans, hoodies, sneakers
+
+Party (feminine):
+- Bold, statement pieces — sequins, satin, bold colors
+- Heels, block heels, strappy sandals
+
+Party (masculine):
+- Trendy but clean — printed shirts, chinos, dark jeans
+- Chelsea boots, loafers, clean white sneakers
+
+Date:
+- Smart casual — elevated basics, clean cuts
+- Not overdressed, not underdressed
+
+College:
+- Comfortable, trendy, youthful
+- Jeans, casual tops, sneakers all fine
+
+Beach/Casual:
+- Relaxed, breathable fabrics
+- Shorts, linen shirts, sandals, slides
 
 Always suggest items that COMPLEMENT the existing colors — never clash.
 Explain WHY each item works with the specific colors and occasion.

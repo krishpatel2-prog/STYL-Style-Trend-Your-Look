@@ -140,6 +140,12 @@
     `).join("");
   };
 
+  const scoreMeta = (score) => {
+    if (score >= 7) return { color: "#2d6a4f", label: "Great choice!" };
+    if (score >= 4) return { color: "#9d6b2e", label: "Could work" };
+    return { color: "#9d3d2e", label: "Not ideal" };
+  };
+
   const initOccasionPage = () => {
     const occasionButtons = [...document.querySelectorAll(".occasion-pill")];
     const styleButtons = [...document.querySelectorAll(".style-pill")];
@@ -247,9 +253,13 @@
     const submit = document.getElementById("analyze-submit");
     const error = document.getElementById("analyze-error");
     const meta = document.getElementById("analyze-meta");
-    const analysisOccasion = document.getElementById("analysis-occasion");
+    const analysisCard = document.getElementById("analysisCard");
+    const analysisEmoji = document.getElementById("analysis-emoji");
     const analysisVibe = document.getElementById("analysis-vibe");
+    const analysisScoreBadge = document.getElementById("analysis-score-badge");
+    const analysisVerdict = document.getElementById("analysis-verdict");
     const analysisDetails = document.getElementById("analysis-details");
+    const analysisWarningBanner = document.getElementById("analysis-warning-banner");
     const results = document.getElementById("analyze-results");
     const shirtInput = document.getElementById("shirt-input");
     const shirtPreview = document.getElementById("shirt-preview");
@@ -283,9 +293,13 @@
 
       setLoading(submit, true, "Analyze My Fit", "Analyzing...");
       meta.textContent = "Running vision analysis";
-      analysisOccasion.textContent = occasion;
+      analysisEmoji.textContent = "⏳";
       analysisVibe.textContent = "Analyzing...";
+      analysisScoreBadge.textContent = "Scoring...";
+      analysisScoreBadge.style.backgroundColor = "#9d6b2e";
+      analysisVerdict.textContent = "Reading the silhouette and checking if the outfit matches the occasion.";
       analysisDetails.innerHTML = `<p class="text-secondary">Uploading images and waiting for the backend response.</p>`;
+      analysisWarningBanner.classList.add("hidden");
 
       const form = new FormData();
       form.append("occasion", occasion);
@@ -310,16 +324,32 @@
           setError(error, data.warnings[0]);
         }
 
-        analysisOccasion.textContent = vision.occasion || occasion;
+        analysisEmoji.textContent = vision.vibe_emoji || "✨";
         analysisVibe.textContent = vision.overall_vibe || "unknown";
+        const score = Number(vision.occasion_match_score ?? 0);
+        const scoreInfo = scoreMeta(score);
+        analysisScoreBadge.textContent = `${scoreInfo.label} • ${Number.isFinite(score) ? score.toFixed(1) : "0.0"}/10`;
+        analysisScoreBadge.style.backgroundColor = scoreInfo.color;
+        analysisVerdict.textContent = vision.stylist_verdict || "This is the honest stylist take on your outfit.";
         analysisDetails.innerHTML = renderAnalysisDetails(vision);
+        if (score < 4) {
+          analysisWarningBanner.textContent = `This outfit may not be the best choice for ${vision.occasion || occasion}. Here's what we recommend instead:`;
+          analysisWarningBanner.classList.remove("hidden");
+        } else {
+          analysisWarningBanner.classList.add("hidden");
+        }
         results.innerHTML = renderAnalyzeGroups(recommendationGroups);
         meta.textContent = `${Object.keys(recommendationGroups).length} recommendation groups`;
       } catch (err) {
         console.error("Analyze fetch error:", err);
         meta.textContent = "Request failed";
         analysisVibe.textContent = "Unavailable";
+        analysisEmoji.textContent = "⚠️";
+        analysisScoreBadge.textContent = "Unavailable";
+        analysisScoreBadge.style.backgroundColor = "#9d3d2e";
+        analysisVerdict.textContent = "We could not complete the stylist read this time.";
         analysisDetails.innerHTML = `<p class="text-on-error-container">The backend request failed before analysis could complete.</p>`;
+        analysisWarningBanner.classList.add("hidden");
         results.innerHTML = `<div class="rounded-2xl bg-error-container p-8 text-center text-on-error-container">Unable to load product recommendations right now.</div>`;
         setError(error, err.message || "Request failed.");
       } finally {
