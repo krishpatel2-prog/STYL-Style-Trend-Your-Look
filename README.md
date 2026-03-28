@@ -1,6 +1,9 @@
+
 # STYL — Style Trend Your Look 👗✨
 
 > AI-powered personal stylist that analyzes your outfit photos and finds real shoppable products from Myntra, Amazon, and more — in seconds.
+
+https://github.com/user-attachments/assets/d5f07723-4932-4338-b36d-34c6131884bc
 
 🌐 **Live Demo:** [styl-style-trend-your-look-frontend.onrender.com](https://styl-style-trend-your-look-frontend.onrender.com)
 
