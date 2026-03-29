@@ -4,11 +4,18 @@ from typing import Any
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
-from .agents.occasion_agent import plan_occasion_outfit
-from .agents.search_agent import enrich_recommendations, search_products
-from .agents.style_agent import recommend_outfit
-from .agents.vision_agent import analyze_outfit
-from .utils.image_utils import convert_to_base64
+try:
+    from .agents.occasion_agent import plan_occasion_outfit
+    from .agents.search_agent import enrich_recommendations, search_products
+    from .agents.style_agent import recommend_outfit
+    from .agents.vision_agent import analyze_outfit
+    from .utils.image_utils import convert_to_base64
+except ImportError:
+    from agents.occasion_agent import plan_occasion_outfit
+    from agents.search_agent import enrich_recommendations, search_products
+    from agents.style_agent import recommend_outfit
+    from agents.vision_agent import analyze_outfit
+    from utils.image_utils import convert_to_base64
 
 
 app = FastAPI()

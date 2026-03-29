@@ -2,7 +2,10 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 import json
-from .vision_agent import extract_json
+try:
+    from .vision_agent import extract_json
+except ImportError:
+    from agents.vision_agent import extract_json
 
 
 load_dotenv()
