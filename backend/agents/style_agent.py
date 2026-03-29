@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 import json
 
-from agents.vision_agent import extract_json
+from .vision_agent import extract_json
 
 load_dotenv()
 

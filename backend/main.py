@@ -4,11 +4,11 @@ from typing import Any
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
-from agents.occasion_agent import plan_occasion_outfit
-from agents.search_agent import enrich_recommendations, search_products
-from agents.style_agent import recommend_outfit
-from agents.vision_agent import analyze_outfit
-from utils.image_utils import convert_to_base64
+from .agents.occasion_agent import plan_occasion_outfit
+from .agents.search_agent import enrich_recommendations, search_products
+from .agents.style_agent import recommend_outfit
+from .agents.vision_agent import analyze_outfit
+from .utils.image_utils import convert_to_base64
 
 
 app = FastAPI()
@@ -25,6 +25,12 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+
+@app.api_route("/health", methods=["GET", "HEAD"])
+def health_check():
+    print("Health endpoint was hit")
+    return {"status": "ok"}
 
 
 @app.post("/analyze")
